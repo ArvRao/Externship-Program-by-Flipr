@@ -15,7 +15,7 @@ const getUsers = async (req, res) => {
     }
 
     // limit number of records in a page
-    const LIMIT = 20
+    const LIMIT = 100
     const totalUsers = await User.countDocuments({})
 
     const users = await User.find().sort({ _id: -1 }).limit(LIMIT)
