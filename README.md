@@ -1,3 +1,3 @@
-# Externship-Program-by-Flipr
+# Authentication with JWT, axios.
+# Send emails using nodemailer
 
-Switch through the branches to get different tasks
