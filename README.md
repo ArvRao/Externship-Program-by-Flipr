@@ -9,6 +9,6 @@
 
 ### Run the servers
 * Run <code>npm run dev</code> to start server
-* Run on port <bold>3000</bold>.
+* Run on port **3000**
 
 Send requests here: [http://localhost:3000](http://localhost:3000)
