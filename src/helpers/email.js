@@ -25,7 +25,9 @@ const toSendVerificationEmail = async (to, verificationToken) => {
 
 const sendVerificationEmail = async (userId, email) => {
   // generate auth token
-  const verificationToken = jwt.sign({ id: userId }, vars.jwtSecret, {
+  const verificationToken = jwt.sign({
+    id: userId
+  }, vars.jwtSecret, {
     expiresIn: vars.jwtVerifyEmailExpirationInterval,
   })
 
@@ -33,4 +35,25 @@ const sendVerificationEmail = async (userId, email) => {
   toSendVerificationEmail(email, verificationToken)
 }
 
-module.exports = { TransporterObj, sendVerificationEmail }
+const sendResetPasswordEmail = async (userId, email) => {
+  // generate auth token
+  const verificationToken = jwt.sign({
+    id: userId
+  }, vars.jwtSecret, {
+    expiresIn: vars.jwtResetPassExpirationInterval,
+  });
+
+  // Send email
+  await axios.post(
+    `http://localhost:${vars.emailConfig.port}/email/verify_password`, {
+      to: email,
+      verificationToken,
+    }
+  );
+};
+
+module.exports = {
+  TransporterObj,
+  sendVerificationEmail,
+  sendResetPasswordEmail
+}

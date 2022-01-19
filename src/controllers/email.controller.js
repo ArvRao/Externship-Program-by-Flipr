@@ -1,10 +1,15 @@
 const vars = require('../config/vars')
-const { TransporterObj } = require('../helpers/email')
+const {
+  TransporterObj
+} = require('../helpers/email')
 
 const transporter = TransporterObj()
 
 const verifyEmail = async (req, res) => {
-  const { to, verificationToken } = req.body
+  const {
+    to,
+    verificationToken
+  } = req.body
 
   try {
     //* create email message
@@ -24,8 +29,50 @@ const verifyEmail = async (req, res) => {
       message: `Verification email is sent to: ${to}`,
     })
   } catch (error) {
-    res.status(500).json({ success: false, message: error.message })
+    res.status(500).json({
+      success: false,
+      message: error.message
+    })
   }
 }
 
-module.exports = { verifyEmail }
+const verifyPassword = async (req, res) => {
+  const {
+    to,
+    verificationToken
+  } = req.body;
+
+  try {
+    // create email message
+    let message = {
+      from: vars.emailConfig.from,
+      to,
+      subject: "Reset Password",
+      text: `Click on the link below to reset your password. 
+      The link will be valid for 2 hours\n
+      http://localhost:${vars.port}/users/update_password/${verificationToken}`,
+    };
+
+    // send email
+    await transporter.sendMail(message);
+
+    res.status(200).json({
+      success: true,
+      message: `Reset Password email sent successfully to: ${to}`,
+    });
+  } catch (error) {
+    res
+      .status(500)
+      .json({
+        success: false,
+        message: "Try again. Something Went Wrong..."
+      });
+  }
+};
+
+
+
+module.exports = {
+  verifyEmail,
+  verifyPassword
+}
