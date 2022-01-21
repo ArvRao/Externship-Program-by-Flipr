@@ -262,7 +262,7 @@ const verifyEmail = async (req, res) => {
     // decode the token to get userId
     const decodedData = jwt.verify(token, jwtSecret);
     // if id from token does not match
-    if (!decodedData ? .id)
+    if (!decodedData?.id)
       return res.status(400).json({
         success: false,
         message: "Invalid Token"
@@ -348,7 +348,7 @@ const updatePassword = async (req, res) => {
     // decode the token to get userId
     const decodedData = jwt.verify(token, jwtSecret);
     // if id from token does not match
-    if (!decodedData ? .id)
+    if (!decodedData?.id)
       return res.status(400).json({
         success: false,
         message: "Invalid Token"
@@ -822,7 +822,7 @@ const suggestFriends = async (req, res) => {
     if (Object.keys(searchQuery).length != 0) {
       const searchResults = await User.find(searchQuery).limit(100);
 
-      searchResults ? .map(({
+      searchResults?.map(({
         _id
       }) => {
         if (_id.toString() !== userId && !suggestedIds.has(_id.toString()))
