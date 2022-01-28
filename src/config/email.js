@@ -22,7 +22,7 @@ app.use(mongoSanitize())
 
 // routes
 app.get('/ping', (req, res) => {
-  res.sendStatus(200)
+  res.status(200)
 })
 
 // * middleware
@@ -30,7 +30,7 @@ app.use('/email', routes.emailRoutes)
 
 // * return error for any other route
 app.all('*', (req, res) => {
-  res.sendStatus(404).send('Wrong route. Enter a valid one')
+  res.status(404).send('Wrong route. Enter a valid one')
 })
 
 // error handler

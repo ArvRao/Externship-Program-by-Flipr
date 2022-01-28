@@ -25,9 +25,9 @@ app.use('/users', routes.userRoutes)
 app.use('/login', routes.loginRoutes)
 
 app.all('*', (req, res) => {
-  res.sendStatus(404).send('Wrong route. Enter a valid one')
+  res.status(404).send('Wrong route. Enter a valid one')
 })
 
-app.use(errorHandler)
+// app.use(errorHandler)
 
 module.exports = app

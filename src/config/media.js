@@ -30,7 +30,7 @@ app.options("*", cors());
 app.use("/media", routes.mediaRoutes);
 
 app.all("*", (req, res) => {
-    res.sendStatus(404);
+    res.status(404);
 });
 
 // error handler

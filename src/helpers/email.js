@@ -45,7 +45,7 @@ const sendResetPasswordEmail = async (userId, email) => {
 
   // Send email
   await axios.post(
-    `http://localhost:${vars.emailConfig.port}/email/verify_password`, {
+    `http://localhost:${vars.emailConfig.port}/_password`, {
       to: email,
       verificationToken,
     }

@@ -6,10 +6,12 @@ const {
   mediaApp
 } = require('./config')
 
+const morgan = require('morgan');
+
+app.use(morgan("common"));
+
 // * open mongoose connection
-mongoose.connect(process.env.MONGO_URI, () => {
-  console.log('Application is successfully connected to DB')
-})
+mongoose.connect();
 
 // * main server running at port 3000
 app.listen(vars.port, () =>
