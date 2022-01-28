@@ -3,7 +3,7 @@
 ## Setup
 
   * Clone the repository
-  * Make sure to install all dependies using <strong>npm install<strong>
+  * Make sure to install all dependies using <strong>npm install</strong>
   * Setup the env file as per the given env.example file
 
 ## Start the servers
